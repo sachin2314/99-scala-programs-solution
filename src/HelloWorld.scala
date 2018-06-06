@@ -17,12 +17,34 @@ object HelloWorld {
 
     val temp: List[Any] = List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)
 
-    def compress(inputList: List[Any]): List[Any] = inputList match {
-      case isEmpty => List()
-      case head =>  compress(List(inputList.tail))
+    def compress(inputList: List[Any]): List[Any] = {
+
+    var timebeing: List[Any] = List()
+
+      inputList match {
+        case Nil => List()
+        case head => {
+          println(inputList)
+          if(inputList.head == inputList.tail.head) {
+            timebeing =  timebeing :: inputList.tail
+            println("value of timebeing is as follows - " +timebeing)
+            compress(inputList.tail)
+          }
+          else {
+            compress(inputList.tail.tail)
+          }
+
+        }
+
+
+      }
+
+
 //      case inputList.head != inputList.tail.head =>  compress(List(inputList.head, inputList.tail.head))
     }
-    println(compress(temp))
+
+    val temping = compress(temp)
+    println(temping)
 
   }
 }
